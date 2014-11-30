@@ -1,10 +1,10 @@
-# A Virtual Machine for Ohana API Development
+# A Virtual Machine for Ohana Web Search Development
 
 ## Introduction
-This project automates the setup of a development environment for working on Ohana API. Use this virtual machine to work on a pull request with everything ready to hack and run the test suites.
+This project automates the setup of a development environment for working on Ohana Web Search. Use this virtual machine to work on a pull request with everything ready to hack and run the test suites.
 
 ## Windows installation
-* [Follow the Windows Installation Guide wiki page](https://github.com/codeforamerica/ohana-api-dev-box/wiki/Windows-ohana-api-dev-box-installation-guide).
+* [Follow the Windows Installation Guide wiki page](https://github.com/codeforamerica/ohana-weh-search-dev-box/wiki/Windows-ohana-web-search-dev-box-installation-guide).
 
 ## Mac OSX installation
 * Follow the directions below...
@@ -22,8 +22,8 @@ This project automates the setup of a development environment for working on Oha
   In the directory you want to work in, enter the following:
 
   ```
-  $ git clone https://github.com/codeforamerica/ohana-api-dev-box
-  $ cd ohana-api-dev-box
+  $ git clone https://github.com/codeforamerica/ohana-web-search-dev-box
+  $ cd ohana-web-search-dev-box
   $ vagrant up
   ```
 
@@ -34,7 +34,7 @@ After the installation has finished (it can take several minutes), you can acces
     host $ vagrant ssh
     Welcome to Ubuntu 12.04 LTS (GNU/Linux 3.2.0-23-generic-pae i686)
     ...
-    vagrant@ohana-api-dev-box:~$
+    vagrant@ohana-web-search-dev-box:~$
 
 `host $` refers to the command prompt on your computer's OS, as opposed to the prompt in the virtual machine.
 
@@ -49,11 +49,7 @@ Port 8080 in the host computer is forwarded to port 8080 in the virtual machine.
 
 * Bundler
 
-* Postgres
-
 * System dependencies for nokogiri and pg
-
-* Databases and users needed to run the test suite
 
 * Node.js for the asset pipeline
 
@@ -71,55 +67,28 @@ and
 This workflow is convenient because in the host computer you normally have your editor of choice fine-tuned, Git configured, and SSH keys in place.
 
 ### Set up the project
-Clone your ohana-api fork into the ohana-api-dev-box directory on the host computer:
+Clone your ohana-web-search fork into the ohana-web-search-dev-box directory on the host computer:
 
     host $ ls
     LICENSE.md  README.md  Vagrantfile  bootstrap.sh
-    host $ git clone https://github.com/<your GitHub username>/ohana-api.git
-
-#### Configure the database
-
-In the `ohana-api` directory, you will find a file within the `config` directory called `database.vagrant.yml`. On the host machine, rename it to `database.yml`, overwriting the `database.yml` file that already exists.
+    host $ git clone https://github.com/<your GitHub username>/ohana-web-search.git
 
 #### Set up the environment variables
 
 Inside the `config` folder, you will find a file named `application.example.yml`. Copy its contents to a new file in the same directory called `application.yml`.
 
-#### Bootstrap the ohana-api project in the virtual machine:
-
-    host $ vagrant ssh
-    vagrant@ohana-api-dev-box:~$ cd /vagrant/ohana-api
-    vagrant@ohana-api-dev-box:/vagrant/ohana-api$ script/bootstrap
-
-This step can take several minutes, mostly because it takes a while to install all the gems.
-
 Verify that you can launch the app:
 
-    vagrant@ohana-api-dev-box:/vagrant/ohana-api$ rails s -p 8080
+    vagrant@ohana-web-search-dev-box:/vagrant/ohana-web-search$ rails s -p 4000
 
 You should now be able to access the app on the host machine at
-http://localhost:8080
-
-#### Verify the app is returning JSON
-To see all locations, 30 per page:
-
-    http://localhost:8080/api/locations
-
-Search for locations by keyword and/or location:
-
-    http://localhost:8080/api/search?keyword=food
-    http://localhost:8080/api/search?keyword=counseling&location=94403
-    http://localhost:8080/api/search?location=redwood city, ca
-
-Search for locations by languages spoken:
-
-    http://localhost:8080/api/search?language=spanish
+http://localhost:4000
 
 #### Test the app
 
 Run tests in the virtual machine with this simple command:
 
-    vagrant@ohana-api-dev-box:/vagrant/ohana-api$ script/test
+    vagrant@ohana-web-search-dev-box:/vagrant/ohana-web-search$ script/test
 
 ## Virtual Machine Management
 
@@ -192,4 +161,4 @@ Please check the Vagrant documentation on [NFS synced folders](http://docs.vagra
 
 ## License
 
-Copyright (c) 2014–<i>ω</i> Code for America. See [LICENSE](https://github.com/codeforamerica/ohana-api-dev-box/blob/master/LICENSE.md) for details.
+Copyright (c) 2014–<i>ω</i> Code for America. See [LICENSE](https://github.com/codeforamerica/ohana-web-search-dev-box/blob/master/LICENSE.md) for details.

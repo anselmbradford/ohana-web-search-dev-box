@@ -1,5 +1,5 @@
-# The ouput of all these installation steps is noisy. With this utility
-# the progress report is nice and concise.
+# The ouput of all these installation steps is noisy. 
+# With this utility the progress report is nice and concise.
 function install {
     echo installing $1
     shift
@@ -25,19 +25,6 @@ sudo -u vagrant -H bash -l -c '/home/vagrant/.rvm/bin/rvm install ruby-2.1.3 \
 
 echo installing Bundler
 sudo -u vagrant -H bash -l -c 'gem install bundler -N'
-
-# Postgres pre-installation preparation
-update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
-sudo sh -c "echo 'deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main' > /etc/apt/sources.list.d/pgdg.list"
-wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
-sudo apt-get update
-
-install PostgreSQL postgresql-9.3 postgresql-contrib-9.3 libpq-dev
-cat << EOF | sudo -u postgres psql
--- Create the database user:
-CREATE USER vagrant WITH PASSWORD 'ohanatest';
-alter role vagrant superuser;
-EOF
 
 install 'Nokogiri dependencies' libxml2 libxml2-dev libxslt1-dev
 install 'ExecJS runtime' nodejs
